@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "question": "What is Express.js?",
+    "options": [
+      "A Node.js web framework",
+      "A database",
+      "A programming language",
+      "A CSS framework"
+    ],
+    "correctAnswer": "A Node.js web framework"
+  },
+  {
+    "id": 2,
+    "question": "Which function is used to create an Express application?",
+    "options": [
+      "express()",
+      "createApp()",
+      "app()",
+      "expressApp()"
+    ],
+    "correctAnswer": "express()"
+  },
+  {
+    "id": 3,
+    "question": "Which method is used to handle GET requests?",
+    "options": [
+      "app.post()",
+      "app.get()",
+      "app.fetch()",
+      "app.request()"
+    ],
+    "correctAnswer": "app.get()"
+  },
+  {
+    "id": 4,
+    "question": "Which method is commonly used to send data to a server?",
+    "options": ["GET", "POST", "DELETE", "OPTIONS"],
+    "correctAnswer": "POST"
+  },
+  {
+    "id": 5,
+    "question": "Which middleware parses incoming JSON request data?",
+    "options": [
+      "express.json()",
+      "express.parse()",
+      "express.data()",
+      "express.body()"
+    ],
+    "correctAnswer": "express.json()"
+  },
+  {
+    "id": 6,
+    "question": "Which method starts an Express server listening for requests?",
+    "options": [
+      "app.run()",
+      "app.start()",
+      "app.listen()",
+      "app.server()"
+    ],
+    "correctAnswer": "app.listen()"
+  },
+  {
+    "id": 7,
+    "question": "What is middleware in Express?",
+    "options": [
+      "A function that has access to request, response, and next",
+      "A database table",
+      "A frontend component",
+      "A CSS file"
+    ],
+    "correctAnswer": "A function that has access to request, response, and next"
+  },
+  {
+    "id": 8,
+    "question": "Which object contains information about the incoming request?",
+    "options": ["req", "res", "app", "server"],
+    "correctAnswer": "req"
+  },
+  {
+    "id": 9,
+    "question": "Which object is used to send a response to the client?",
+    "options": ["req", "res", "app", "next"],
+    "correctAnswer": "res"
+  },
+  {
+    "id": 10,
+    "question": "Which function passes control to the next middleware?",
+    "options": ["next()", "continue()", "forward()", "move()"],
+    "correctAnswer": "next()"
+  }
+]
