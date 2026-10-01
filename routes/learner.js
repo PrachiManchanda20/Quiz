@@ -7,7 +7,7 @@ router.get('/dashboard',(req,res)=>{
         username: req.session.user.username
     });
 })
-router.post('/dashboard/difficulty:',(req,res)=>{
-   res.render('n')//start krna h
-})
+// router.post('/dashboard/difficulty:',(req,res)=>{
+//    res.render('n')//start krna h
+// })
 module.exports=router;

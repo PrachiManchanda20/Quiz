@@ -1,3 +1,4 @@
+// const { error } = require('console');
 const express=require('express');
 const router=express.Router();
 const fs=require('fs');
@@ -5,6 +6,31 @@ const path=require('path');
 
 router.get('/login',(req,res,next)=>{
     res.render('login');
+})
+
+router.get('/changePass',(req,res,next)=>{
+    res.render('changePass');
+})
+
+router.post('/changePass',(req,res,next)=>{
+console.log(req.body);
+let username=req.body.username;
+let password=req.body.password;
+let rePAss=req.body.rePAss;
+if(password==rePAss){
+     console.log("matched!");
+    res.redirect('/learner/dashboard');
+    //     error:false,
+    //     errorMsg:""});
+}
+else{
+    console.log("MisMtch");
+    res.render('changePass');
+    //     error:true,
+    //     errorMsg:"Password doesn't match!"}
+    // );
+}
+    // res.render('changePass');
 })
 
 router.post('/login',(req,res)=>{
@@ -32,7 +58,6 @@ router.post('/login',(req,res)=>{
         }
         // file.push(user);
     
-    
     if(role=='learner'){
         res.redirect('/learner/dashboard');
     }
@@ -40,7 +65,8 @@ router.post('/login',(req,res)=>{
     console.log(req.body);
 }
 else{
-    res.redirect('/auth/signin');
+    // res.redirect('/auth/signin');
+    res.send("ended");
 }
 })
 router.get('/signin',(req,res,next)=>{
