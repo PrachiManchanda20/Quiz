@@ -1,12 +1,56 @@
 [
   {
-    "username": "Abhira",
-    "password": "12345",
+    "username": "aaku",
+    "email": "aku@gmail.com",
+    "password": "90",
     "role": "learner"
   },
   {
-    "username": "Sirat",
-    "password": "9898",
+    "username": "avi",
+    "email": "avi@gmail.com",
+    "password": "1234",
+    "role": "learner"
+  },
+  {
+    "username": "avinash",
+    "email": "avinash@gmail.com",
+    "password": "567",
+    "role": "learner"
+  },
+  {
+    "username": "avika",
+    "email": "avika@gmail.com",
+    "password": "7888",
+    "role": "learner"
+  },
+  {
+    "username": "prachi",
+    "email": "prachi@gmail.com",
+    "password": "33",
+    "role": "learner"
+  },
+  {
+    "username": "prachi",
+    "email": "prachi@gmail.com",
+    "password": "33",
+    "role": "learner"
+  },
+  {
+    "username": "prachi",
+    "email": "prachi@gmail.com",
+    "password": "33",
+    "role": "learner"
+  },
+  {
+    "username": "prachi",
+    "email": "prachi@gmail.com",
+    "password": "33",
+    "role": "learner"
+  },
+  {
+    "username": "prachi",
+    "email": "prachi@gmail.com",
+    "password": "33",
     "role": "learner"
   }
 ]
