@@ -31,26 +31,16 @@
   },
   {
     "username": "prachi",
-    "email": "prachi@gmail.com",
-    "password": "33",
+    "email": "manchandaprachi69@gmail.com",
+    "password": "12345",
     "role": "learner"
   },
   {
-    "username": "prachi",
-    "email": "prachi@gmail.com",
-    "password": "33",
-    "role": "learner"
-  },
-  {
-    "username": "prachi",
-    "email": "prachi@gmail.com",
-    "password": "33",
-    "role": "learner"
-  },
-  {
-    "username": "prachi",
-    "email": "prachi@gmail.com",
-    "password": "33",
-    "role": "learner"
+    "username": "Prachi",
+    "email": "prachimanchanda20@gmail.com",
+    "password": "12345",
+    "role": "learner",
+    "passExpiry": 1790967141397,
+    "token": "107af3279442d833fb2a567c437763b87f2c9a344e22380dc8e3908da6c832d0"
   }
 ]

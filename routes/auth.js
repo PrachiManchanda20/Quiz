@@ -2,6 +2,10 @@ const express = require('express');
 const router = express.Router();
 const fs = require('fs');
 const path = require('path');
+const nodemailer = require('nodemailer');
+const crypto = require('crypto');
+const { error } = require('console');
+
 
 router.get('/login', (req, res, next) => {
     res.render('login');
@@ -16,6 +20,7 @@ router.post('/login', (req, res) => {
     const role = req.body.role;
     const password = req.body.password;
     const email = req.body.email;
+
     const user = {
         username,
         password,
@@ -40,10 +45,12 @@ router.post('/login', (req, res) => {
         console.log(req.body);
     }
     else {
-        // res.redirect('/auth/signin');
+
         res.send("ended");
     }
+
 })
+
 router.get('/signin', (req, res, next) => {
     res.render('signin');
 })
@@ -64,14 +71,8 @@ router.post('/signin', (req, res, next) => {
         password: password,
         role: role
     }
-    parsedFile.push(user);
     if (role == 'learner') {
-        // for(let parse of parsedFile){
-        //     if(parse.username==username && parse.password==password){
-        // console.log("already Login");
-        // res.render('login');
-        //     }
-        // }
+
         let existed = parsedFile.find((el) => el.username == username && el.password == password)
         if (existed) {
             console.log("already Login");
@@ -91,6 +92,7 @@ router.post('/signin', (req, res, next) => {
 
         res.redirect('/admin/dashboard');
     }
+    parsedFile.push(user);
     fs.writeFileSync(path.join(__dirname, '..', 'data', 'learner.json'), JSON.stringify(parsedFile, null, 2));
 
 })
@@ -110,38 +112,139 @@ router.post('/changePass', (req, res, next) => {
     let rePAss = req.body.rePAss;
     let email = req.body.email;
     let role = req.body.role;
-    if (password == rePAss) {
-        console.log("matched!");
 
-        for (let data of parsData) {
-            if (data.email == email && data.username == username) {
-                data.password = password;
-            }
-        }
-        console.log(parsData);
+    const userGmail = 'manchandaprachi69@gmail.com';
+    const userPass = 'eulk pyip rmzy odes';
 
-        // res.redirect('/learner/dashboard');
-
-        //     error:false,
-        //     errorMsg:""});
-        fs.writeFileSync(path.join(__dirname, '..', 'data', 'learner.json'), JSON.stringify(parsData, null, 2));
-        req.session.user = {
-            username: username,
-            role: role,
-            email: email
-        }
-        res.redirect('/learner/dashboard');
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: { user: userGmail, pass: userPass }
+    })
+    if (email == userGmail || password == userPass) {
+        return res.render('resetPass', {
+            error: true,
+            errorMsg: "Email is not configured. Pleasec contact support." });
     }
-    else {
-        console.log("MisMtch");
-        res.render('changePass');
-        //     error:true,
-        //     errorMsg:"Password doesn't match!"}
-        // );
+
+    const user = parsData.find((entry) => entry.email == email);
+    console.log("token ");
+    if (user) {
+        const token = crypto.randomBytes(32).toString('hex');
+        const baseUrl = `http://localhost:${2000}`;
+        const resetUrl = `${baseUrl}/resetPass/${token}`;
+        
+        console.log(token);
+        console.log(user);
+        // user.hashTokenPass=bcrypt.hash(token ,10);
+        user.token=token;
+        user.passExpiry=Date.now()+ 60* 60* 1000;
+        fs.writeFileSync(path.join(__dirname,'..','data','learner.json'),JSON.stringify(parsData,null,2));
+    
+    try{
+        transporter.sendMail({
+            from: userGmail,
+            to: user.email,
+            subject:"Reset Password",
+            text:`Click the link to reset your password. It expires in one hour: ${resetUrl}`,
+            html:`<p>Click the link to reset your password</p><a href=${resetUrl}>Reset</a>`,
+        });
+        console.log("hii try block");
     }
+    catch(error){
+        delete user.token;
+        delete user.passExpiry;
+        fs.writeFileSync(path.join(__dirname,'..','data','learner.json'),JSON.stringify(parsData,null,2));
+        console.log(error);  
+    }
+    }
+    res.render('resetPass',{
+        
+        error: true,
+        errorMsg: "Change password link is sent to your Email id"
+    });
+    
+
+    // if (password == rePAss) {
+    //     console.log("matched!");
+
+    //     for (let data of parsData) {
+    //         if (data.email == email && data.username == username) {
+    //             data.password = password;
+    //         }
+    //     }
+    //     console.log(parsData);
+
+    //   
+    //     fs.writeFileSync(path.join(__dirname, '..', 'data', 'learner.json'), JSON.stringify(parsData, null, 2));
+        // req.session.user = {
+        //     username: username,
+        //     role: role,
+        //     email: email
+        // }
+    //     res.redirect('/learner/dashboard');
+    // }
+    // else {
+    //     console.log("MisMtch");
+    //     res.render('changePass');
+
+    // }
+
 
 })
 
+router.get('/resetPass/:token', (req, res, next) => {
+    const data=fs.readFileSync(path.join(__dirname,'..','data','learner.json'));
+    const parseData=JSON.parse(data);
 
+    const token=req.params.token;
+
+    const user=parseData.find((data)=>data.token == token);
+
+    if(!user){
+        return res.render('signin');
+    }
+    if(Date.now() > user.passExpiry){
+        return res.render('signin');
+    }
+
+    console.log("user exist and it's expiry limit has not reached!");
+    res.render('resetPass',{token: token});
+    // res.send("Pass changed!");
+})
+
+router.post('/resetPass/:token',(req,res,next)=>{
+
+    const data=fs.readFileSync(path.join(__dirname,'..','data','learner.json'));
+    const parseData=JSON.parse(data);
+
+    const token=req.params.token;
+
+    const user=parseData.find((data)=>data.token == token);
+
+    if(!user){
+        return res.render('signin');
+    }
+    if(Date.now() > user.passExpiry){
+        return res.render('signin');
+    }
+
+    const password=req.body.password;
+    const rePAss=req.body.rePAss;
+
+    if(!password || password != rePAss){
+        return res.render('resetPass',{token: token ,
+            error: true,
+            errorMsg: "Password doesn't Match"
+        });
+    }
+
+    user.password=password;
+
+    delete user.token;
+    delete user.passExpiry;
+
+    fs.writeFileSync(path.join(__dirname,'..','data','learner.json'),JSON.stringify(parseData,null,2));
+    res.send("Pass changed!"); 
+})
 
 module.exports = router;
