@@ -6,24 +6,29 @@
     <title>Learner Dashboard</title>
 </head>
 <body>
-    <h1>Wlecome <%=username%></h1>
+    <%- include('../partials/header') %>
+    <h1>Welcome <%=username%></h1>
+    <br/>
+    <br/>
     <h2>Learner dashboard</h2>
+    <div>
+        <form method="get" action="/learner/dashboard">
     <select name="subjects">
-        <option value="java">Java</option>
-        <option value="javascript">Javascript</option>
-        <option value="express">Express</option>
+        <option value="java" name="java">Java</option>
+        <option value="javascript" name="javascript">Javascript</option>
+        <option value="express"  name="express">Express</option>
     </select>
     <select name="difficulty">
-        <option value="beginner">Beginner</option>
-        <option value="intermediate">Intermediate</option>
-        <option value="advanced">Advanced</option>
+        <option value="beginner" name="beginner">Beginner</option>
+        <option value="intermediate" name="intermediate">Intermediate</option>
+        <option value="advanced" name="advanced">Advanced</option>
     </select>
-    <div>
-        <%#if(subject.value==java)%>
-        <%#{%>
-            
-        
+    <input type="submit" name="startQuiz" placeholder="Start Quizz">
+    </form>
 
     </div>
+    <%- include('../partials/footer') %>
+   
 </body>
+
 </html>

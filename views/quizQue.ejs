@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question</title>
+</head>
+<body>
+    <%- include('../partials/header') %>
+    
+    <div class="div" id="info">
+        
+        <% quizes.forEach((one)=>{ %>
+            <form method="Get" action="/learner/quizQues/<%= one.id %>">
+            <p><%= one.id %></p>
+            <p><%= one.title %></p> 
+            <p><%= one.subject %></p> 
+            <p><%= one.difficulty %></p> 
+            <p><%= one.durationMinutes %></p>  
+            <input type="submit" name=one.id  placeholder="start quiz">
+            </form>
+      <%  }) %>
+      
+    </div>
+
+
+    <%- include('../partials/footer') %>
+</body>
+</html>

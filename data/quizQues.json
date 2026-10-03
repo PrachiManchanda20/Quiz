@@ -1,0 +1,322 @@
+[
+  {
+    "id": 1,
+    "title": "Java Fundamentals",
+    "subject": "java",
+    "difficulty": "beginner",
+    "durationMinutes": "10 Minutes",
+    "questions": [
+      {
+        "id": 1,
+        "question": "Which keyword is used to create a class in Java?",
+        "options": [
+          "class",
+          "struct",
+          "define",
+          "object"
+        ],
+        "correctAnswer": 0
+      },
+      {
+        "id": 2,
+        "question": "Which method is the entry point of a Java program?",
+        "options": [
+          "start()",
+          "main()",
+          "run()",
+          "execute()"
+        ],
+        "correctAnswer": 1
+      },
+      {
+        "id": 3,
+        "question": "Which data type is used to store whole numbers in Java?",
+        "options": [
+          "float",
+          "String",
+          "int",
+          "boolean"
+        ],
+        "correctAnswer": 2
+      },
+      {
+        "id": 4,
+        "question": "Which symbol is used to end a statement in Java?",
+        "options": [
+          ".",
+          ":",
+          ";",
+          ","
+        ],
+        "correctAnswer": 2
+      },
+      {
+        "id": 5,
+        "question": "Which keyword is used to inherit a class?",
+        "options": [
+          "implements",
+          "extends",
+          "inherits",
+          "super"
+        ],
+        "correctAnswer": 1
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "JavaScript Basics",
+    "subject": "javascript",
+    "difficulty": "beginner",
+    "durationMinutes": "10 Minutes",
+    "questions": [
+      {
+        "id": 1,
+        "question": "Which keyword can be used to declare a variable in JavaScript?",
+        "options": [
+          "var",
+          "define",
+          "variable",
+          "declare"
+        ],
+        "correctAnswer": 0
+      },
+      {
+        "id": 2,
+        "question": "Which method converts JSON text into a JavaScript object?",
+        "options": [
+          "JSON.parse()",
+          "JSON.stringify()",
+          "JSON.convert()",
+          "JSON.object()"
+        ],
+        "correctAnswer": 0
+      },
+      {
+        "id": 3,
+        "question": "Which operator is used for strict equality?",
+        "options": [
+          "==",
+          "=",
+          "===",
+          "!="
+        ],
+        "correctAnswer": 2
+      },
+      {
+        "id": 4,
+        "question": "Which method adds an element to the end of an array?",
+        "options": [
+          "push()",
+          "pop()",
+          "shift()",
+          "unshift()"
+        ],
+        "correctAnswer": 0
+      },
+      {
+        "id": 5,
+        "question": "Which keyword is used to define a function?",
+        "options": [
+          "function",
+          "def",
+          "fun",
+          "method"
+        ],
+        "correctAnswer": 0
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Express.js Basics",
+    "subject": "express",
+    "difficulty": "intermediate",
+    "durationMinutes": "15 Minutes",
+    "questions": [
+      {
+        "id": 1,
+        "question": "Which module is commonly used to create an Express application?",
+        "options": [
+          "express",
+          "http-server",
+          "router-js",
+          "node-express"
+        ],
+        "correctAnswer": 0
+      },
+      {
+        "id": 2,
+        "question": "Which method is used to define a GET route?",
+        "options": [
+          "app.fetch()",
+          "app.get()",
+          "app.read()",
+          "app.request()"
+        ],
+        "correctAnswer": 1
+      },
+      {
+        "id": 3,
+        "question": "Which object contains data sent through a POST request body?",
+        "options": [
+          "req.body",
+          "req.data",
+          "req.post",
+          "req.content"
+        ],
+        "correctAnswer": 0
+      },
+      {
+        "id": 4,
+        "question": "Which function is used to send an HTML response directly?",
+        "options": [
+          "res.send()",
+          "res.html()",
+          "res.page()",
+          "res.output()"
+        ],
+        "correctAnswer": 0
+      },
+      {
+        "id": 5,
+        "question": "Which function passes control to the next middleware?",
+        "options": [
+          "next()",
+          "continue()",
+          "forward()",
+          "pass()"
+        ],
+        "correctAnswer": 0
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Advanced JavaScript",
+    "subject": "javascript",
+    "difficulty": "intermediate",
+    "durationMinutes": "15 Minutes",
+    "questions": [
+      {
+        "id": 1,
+        "question": "What does the map() method return?",
+        "options": [
+          "A new array",
+          "The original array only",
+          "A string",
+          "A boolean"
+        ],
+        "correctAnswer": 0
+      },
+      {
+        "id": 2,
+        "question": "Which keyword refers to the current object?",
+        "options": [
+          "self",
+          "this",
+          "current",
+          "object"
+        ],
+        "correctAnswer": 1
+      },
+      {
+        "id": 3,
+        "question": "What is the result of typeof null?",
+        "options": [
+          "null",
+          "undefined",
+          "object",
+          "string"
+        ],
+        "correctAnswer": 2
+      },
+      {
+        "id": 4,
+        "question": "Which method removes the last element from an array?",
+        "options": [
+          "shift()",
+          "remove()",
+          "delete()",
+          "pop()"
+        ],
+        "correctAnswer": 3
+      },
+      {
+        "id": 5,
+        "question": "Which function converts a JavaScript object into JSON text?",
+        "options": [
+          "JSON.parse()",
+          "JSON.stringify()",
+          "JSON.convert()",
+          "JSON.toObject()"
+        ],
+        "correctAnswer": 1
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Express.js Routing",
+    "subject": "express",
+    "difficulty": "intermediate",
+    "durationMinutes": "15 Minutes",
+    "questions": [
+      {
+        "id": 1,
+        "question": "Which method is used to create a POST route in Express?",
+        "options": [
+          "app.get()",
+          "app.post()",
+          "app.send()",
+          "app.routePost()"
+        ],
+        "correctAnswer": 1
+      },
+      {
+        "id": 2,
+        "question": "Which object is used to access URL parameters?",
+        "options": [
+          "req.params",
+          "req.body",
+          "req.query",
+          "req.urlParams"
+        ],
+        "correctAnswer": 0
+      },
+      {
+        "id": 3,
+        "question": "Which object is used to access query parameters?",
+        "options": [
+          "req.params",
+          "req.query",
+          "req.body",
+          "req.search"
+        ],
+        "correctAnswer": 1
+      },
+      {
+        "id": 4,
+        "question": "Which Express method renders an EJS template?",
+        "options": [
+          "res.send()",
+          "res.render()",
+          "res.show()",
+          "res.template()"
+        ],
+        "correctAnswer": 1
+      },
+      {
+        "id": 5,
+        "question": "Which middleware parses URL-encoded form data?",
+        "options": [
+          "express.json()",
+          "express.static()",
+          "express.urlencoded()",
+          "express.form()"
+        ],
+        "correctAnswer": 2
+      }
+    ]
+  }
+]

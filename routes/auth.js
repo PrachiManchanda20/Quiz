@@ -45,8 +45,9 @@ router.post('/login', (req, res) => {
         console.log(req.body);
     }
     else {
-
-        res.send("ended");
+        res.render('login',{error: true,
+            errorMsg: "Incorrect Password"});
+        // res.send("Wrong password");//if pass is wrong
     }
 
 })
@@ -131,7 +132,7 @@ router.post('/changePass', (req, res, next) => {
     if (user) {
         const token = crypto.randomBytes(32).toString('hex');
         const baseUrl = `http://localhost:${2000}`;
-        const resetUrl = `${baseUrl}/resetPass/${token}`;
+        const resetUrl = `${baseUrl}/auth/resetPass/${token}`;
         
         console.log(token);
         console.log(user);
@@ -148,7 +149,7 @@ router.post('/changePass', (req, res, next) => {
             text:`Click the link to reset your password. It expires in one hour: ${resetUrl}`,
             html:`<p>Click the link to reset your password</p><a href=${resetUrl}>Reset</a>`,
         });
-        console.log("hii try block");
+        console.log("hii try block"); 
     }
     catch(error){
         delete user.token;
@@ -158,7 +159,6 @@ router.post('/changePass', (req, res, next) => {
     }
     }
     res.render('resetPass',{
-        
         error: true,
         errorMsg: "Change password link is sent to your Email id"
     });
@@ -243,7 +243,14 @@ router.post('/resetPass/:token',(req,res,next)=>{
     delete user.token;
     delete user.passExpiry;
 
+    req.session.user={
+        username: user.username,
+        role: user.role,
+        email: user.email
+    }
+
     fs.writeFileSync(path.join(__dirname,'..','data','learner.json'),JSON.stringify(parseData,null,2));
+    res.redirect('/learner/dashboard');
     res.send("Pass changed!"); 
 })
 
