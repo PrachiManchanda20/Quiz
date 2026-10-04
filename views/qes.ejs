@@ -10,14 +10,23 @@
 
     <div id="eachQues">
         <%= durationMinutes %>
-        
-        <% questions.forEach((ques)=>{
-             <form action="/learner/quizQues/<$= id %>">
-                <%= ques.question>
+        <br/>
+        <h2> <%= quest.question %> </h2>
+             <form method="POST" action="/learner/quizQues/<%= id %>">
+                <% quest.options.forEach((option,index)=>{ %>
+                   <input type="radio" name="option" value="<%= index %>" required> <%= option %>
+                   <br/>
+                <%  }) %>
+                <input type="submit" placeholder="submit" name="submit">
              </form>
-        })
-        <% } %>
-       
+            
+            <% if(message) { %>
+                <h3><%= message %></h3>
+                <% if(correctAns) { %>
+                    <h3>Correct Answer :</h3>
+                    <h4><%= correct %></h4>
+                <% } %>
+             <% } %>
     </div>
 
     <%- include('../partials/footer') %>
