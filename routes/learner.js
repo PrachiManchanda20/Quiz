@@ -17,7 +17,7 @@ router.get('/dashboard', (req, res) => {
     if (typeof subjects != 'undefined' && subjects) {
         const multiple=[];
         for (let data of parseData) {
-            if (data.difficulty == difficulty) {
+            if (data.difficulty == difficulty && data.subject==subjects) {
 
                 
                 multiple.push(data);
@@ -34,13 +34,14 @@ router.get('/dashboard', (req, res) => {
     });
 
 })
+
 router.get('/quizQues/:id',(req,res,next)=>{
     console.log(req.params.id);
     const file=fs.readFileSync(path.join(__dirname,'..','data','quizQues.json'),'utf8');
     const parseData=JSON.parse(file);
 
     const oneQues=parseData.find((one)=>one.id==req.params.id);
-    console.log(oneQues);
+    // console.log(oneQues);
 
     const totalTime=oneQues.durationMinutes;
     const curentTime=10;
@@ -51,33 +52,30 @@ router.get('/quizQues/:id',(req,res,next)=>{
     let marksGained=0;
 
     let startQues=[];
-    // for(let ques of oneQues){
+    
     for(let i=1;i<=oneQues.questions.length;){
-        if(timeCondt==false || result.length==5){
-            res.render('result');
-        }
-        
-        // startQues.push(ques.questions.id);
-        // const part=ques.questions.find((op)=>op.id==i);
+        // if(timeCondt==false || result.length==5){
+        //     res.render('result');
+        // }
+        console.log(oneQues.questions[0],oneQues.questions[1],oneQues.questions[2],oneQues.questions[3],oneQues.questions[4]);
         const part=oneQues.questions[i].find((op)=>op.id==i)
-        console.log(oneQues.questions[i]);
+
+        
 
         res.render('ques',{
             quest: part,
 
-        // durationMinutes: durationMinutes,
-        // questions: oneQues,
     })
-    if(req.body.option==part.correctAnswer){
-        correctAns++;
-        marksGained+=5;
-        i++;
-    }
-    else{
-       marksGained-=1;
-       render
-       i++; 
-    }
+    // if(req.body.option==part.correctAnswer){
+    //     correctAns++;
+    //     marksGained+=5;
+    //     i++;
+    // }
+    // else{
+    //    marksGained-=1;
+    //    render
+    //    i++; 
+    // }
     }
 
     
@@ -85,13 +83,21 @@ router.get('/quizQues/:id',(req,res,next)=>{
 
 })
 
-// router.get('/dashboard/:subject/:difficulty',(req,res,next)=>{
+router.post('/quizQues/:id',(req,res,next)=>{
 
-//     console.log("url",req.params.subject);
-//     console.log(req.params.difficulty);
+    console.log(req.body);
+    res.send(req.params.id);
+    // if(req.body.option==part.correctAnswer){
+    //     correctAns++;
+    //     marksGained+=5;
+    //     i++;
+    // }
+    // else{
+    //    marksGained-=1;
+    //    render
+    //    i++; 
+    // }
 
-// })
-// router.post('/dashboard/difficulty:',(req,res)=>{
-//    res.render('n')//start krna h
-// })
+})
+
 module.exports = router;

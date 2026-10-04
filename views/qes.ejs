@@ -12,7 +12,9 @@
         <%= durationMinutes %>
         
         <% questions.forEach((ques)=>{
-             <form></form>
+             <form action="/learner/quizQues/<$= id %>">
+                <%= ques.question>
+             </form>
         })
         <% } %>
        
