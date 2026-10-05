@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instructions</title>
+</head>
+<body>
+    <div id="instructions">
+        <form method="POST" action="/learner/quizQues/<%= id %>">
+
+            <p> <%= timeLimit %> </p>
+            <p> <%= instruct1 %> </p>
+            <p> <%= instruct2 %> </p>
+            <p> <%= instruct3 %> </p>
+
+            <input type="submit" placeholder="Start" value="start">
+        </form>
+    </div>
+</body>
+</html>

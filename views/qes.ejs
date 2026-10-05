@@ -1,34 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Subject</title>
 </head>
+
 <body>
     <%- include('../partials/header') %>
 
-    <div id="eachQues">
-        <%= durationMinutes %>
-        <br/>
-        <h2> <%= quest.question %> </h2>
-             <form method="POST" action="/learner/quizQues/<%= id %>">
-                <% quest.options.forEach((option,index)=>{ %>
-                   <input type="radio" name="option" value="<%= index %>" required> <%= option %>
-                   <br/>
-                <%  }) %>
-                <input type="submit" placeholder="submit" name="submit">
-             </form>
-            
-            <% if(message) { %>
-                <h3><%= message %></h3>
-                <% if(correctAns) { %>
-                    <h3>Correct Answer :</h3>
-                    <h4><%= correct %></h4>
-                <% } %>
-             <% } %>
-    </div>
+        <div id="eachQues">
+            <%= durationMinutes %>
+                <br />
+                <h2>
+                    <%= quest.question %>
+                </h2>
+                <form method="POST" action="/learner/quizQues/<%= id %>">
+                    <% quest.options.forEach((option,index)=>{ %>
+                        <input type="radio" name="option" value="<%= index %>" required>
+                        <%= option %>
+                            <br />
+                            <% }) %>
+                                <input type="submit" placeholder="submit" name="submit">
+                </form>
 
-    <%- include('../partials/footer') %>
+                <% if(message) { %>
+                    <h3>
+                        <%= message %>
+                    </h3>
+                    <% if(correctAns) { %>
+                        <h3> Correct Answer : <h4>
+                                <%= correct %>
+                            </h4>
+                        </h3>
+
+                        <% } %>
+                            <% } %>
+        </div>
+
+        <%- include('../partials/footer') %>
 </body>
+
 </html>
