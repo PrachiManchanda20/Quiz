@@ -1,45 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Subject</title>
+    <title>Quiz Questions</title>
 </head>
-
 <body>
-    <%- include('../partials/header') %>
 
-        <div id="eachQues">
-            <%= durationMinutes %>
-                <br />
-                <h2>
-                    <%= quest.question %>
-                </h2>
-                <form method="POST" action="/learner/quizQues/<%= id %>">
-                    <% quest.options.forEach((option,index)=>{ %>
-                        <input type="radio" name="option" value="<%= index %>" required>
-                        <%= option %>
-                            <br />
-                            <% }) %>
-                                <input type="submit" placeholder="submit" name="submit">
-                </form>
+    <%- include('./partials/header') %>
 
-                <% if(message) { %>
-                    <h3>
-                        <%= message %>
-                    </h3>
-                    <% if(correctAns) { %>
-                        <h3> Correct Answer : <h4>
-                                <%= correct %>
-                            </h4>
-                        </h3>
+    <div id="eachQues">
+        <p>Duration: <%= durationMinutes %> minutes</p>
+        <h2>Question: <%= quesNo + 1 %></h2>
+        <h3><%= quest.question %></h3>
 
-                        <% } %>
-                            <% } %>
-        </div>
+        <% if (!showNext) { %>
+            <!-- Before submission: show options -->
+            <form method="POST" action="/learner/quizQues/<%= id %>">
+                <input type="hidden" name="action" value="submit">
+                <input type="hidden" name="quesNo" value="<%= quesNo %>">
+                <input type="hidden" name="score" value="<%= score %>">
 
-        <%- include('../partials/footer') %>
+                <% quest.options.forEach((option, index) => { %>
+                    <div>
+                        <input type="radio" id="option<%= index %>" name="option" value="<%= index %>" required>
+                        <label for="option<%= index %>"><%= option %></label>
+                    </div>
+                <% }) %>
+
+                <button type="submit">Submit Answer</button>
+            </form>
+
+        <% } else { %>
+            <!-- After submission: show feedback -->
+            <h3><%= message %></h3>
+            <h3>Correct Answer:</h3>
+            <p><%= correct %></p>
+            <p>Current Score: <%= score %></p>
+
+            <form method="POST" action="/learner/quizQues/<%= id %>">
+                <input type="hidden" name="action" value="next">
+                <input type="hidden" name="quesNo" value="<%= quesNo %>">
+                <input type="hidden" name="score" value="<%= score %>">
+
+                <button type="submit" >
+                    <%= quesNo + 1 >= 5 ? 'Finish Quiz' : 'Next Question' %>
+                </button>
+            </form>
+        <% } %>
+    </div>
+
+    <%- include('./partials/footer') %>
+
 </body>
-
 </html>
