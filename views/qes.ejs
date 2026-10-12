@@ -34,8 +34,8 @@
         <% } else { %>
             <!-- After submission: show feedback -->
             <h3><%= message %></h3>
-            <h3>Correct Answer:</h3>
-            <p><%= correct %></p>
+            <h3>Correct Answer: <p><%= correct %></p></h3>
+            
             <p>Current Score: <%= score %></p>
 
             <form method="POST" action="/learner/quizQues/<%= id %>">

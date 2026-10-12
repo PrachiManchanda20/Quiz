@@ -13,7 +13,10 @@ app.use(session({
     },
     resave:false,
     saveUninitialized: false,
+
 }))
+app.use(express.urlencoded({extended:true}));
+
 const isAuthenticate=require('./middleware/middleware');
 const authRoute= require('./routes/auth.js');
 const learnerRoute=require('./routes/learner.js');
@@ -21,7 +24,7 @@ const adminRoute=require('./routes/admin.js');
 
 const path=require('path');
 
-app.use(express.urlencoded({extended:true}));
+// app.use(express.urlencoded({extended:true}));
 app.use(express.json()); 
 app.use(express.static(path.join(__dirname,'public')));
 

@@ -6,6 +6,29 @@
     <title>Result</title>
 </head>
 <body>
+    <%- include('./partials/header') %>
     <h1>Result Page</h1>
+
+    <div id="result">
+        <h2>QUIZ COMPLETED</h2>
+        <p><%= title %></p>
+        <p><%= subject %></p>
+        <p><%= difficulty %></p>
+        <p><%= score %></p>
+        <p><%= maxScore %></p>
+        <p><%= totalQuestions %></p>
+        <p><%= correctCount %></p>
+        <p><%= wrongCount %></p>
+        <p><%= percentage %></p>
+
+        <% if(id) { %>
+            <a href="/learner/quizQues<%= id %>">Retry Quiz</a>
+            <% } %>
+
+            <a href="/learner/dashboard">Back to Dashboard</a>
+    </div>
+
+
+    <%- include('./partials/footer') %>
 </body>
 </html>

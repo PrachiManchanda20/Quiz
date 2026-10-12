@@ -1,7 +1,9 @@
+const { on } = require('cluster');
 const express = require('express');
 const router = express.Router();
 const fs = require('fs');
 const path = require('path');
+const { title } = require('process');
 
 router.get('/dashboard', (req, res) => {
     const file = fs.readFileSync(path.join(__dirname, '..', 'data', 'quizQues.json'), 'utf8');
@@ -467,15 +469,17 @@ router.post('/quizQues/:id', (req, res) => {
         const oneQues = parseData.find(q => q.id === Number(req.params.id));
         if (!oneQues) return res.status(404).send('Quiz not found');
 
-        console.log(req.body.quesNo,"yye");
-
+    //     console.log(req.body.quesNo,"yye");
+    // console.log(oneQues,"nj");
         let index = req.body.quesNo;
 
-        console.log("ocorrcettion is: ", req.body);
+        let question = oneQues.questions[Number(index)];
 
-        let score;
+        // console.log("ocorrcettion is: ", Number(index),);
+    
+        let score=0;
         let message;
-        console.log("answer is : ", oneQues.questions[oneQues.questions.correctAnswer]);
+        // console.log("answer is : ", oneQues.questions[Number(index)][oneQues.questions[Number(index)].correctAnswer]);
         if(req.body.option == Number(index)){
                 score += 10;
                 message = "Correct Answer!";
@@ -484,7 +488,8 @@ router.post('/quizQues/:id', (req, res) => {
                 score -= 5;
                 message = "Incorrect Answer!";
             }
-
+            console.log('',oneQues.questions[index])
+            console.log("ddwd",req.body.option,"this this",req.body.option)
         if(req.body.action === 'submit'){
 
             return res.render('qes',{
@@ -494,8 +499,9 @@ router.post('/quizQues/:id', (req, res) => {
             quest: oneQues.questions[index],
             durationMinutes: oneQues.durationMinutes,
             message: message,
-            correct: oneQues.questions[oneQues.correctAnswer],
-        // correctAns: null,
+            // correct: oneQues.questions[oneQues.correctAnswer],
+            correct: question.options[question.correctAnswer],
+            // correctAns: null,
             showNext: true,
        })
         }
@@ -515,7 +521,22 @@ router.post('/quizQues/:id', (req, res) => {
             // }
 
             if(next_Ques_Indx >= 5){
-                res.render('result');
+
+                const maxScore = totalQuestions * 10;
+
+                const correctCount = Math.round((score + 5 * 5));
+                const wrongCount = 5 - correctCount;
+               return res.render('result',{
+                id: oneQues.id,
+                title: oneQues.title,
+                subject: oneQues.subject,
+                difficulty: oneQues.difficulty,
+                score,
+                maxScore,
+                totalQuestions: 5,
+                correctCount,
+                wrongCount,
+                percentage : Math.max(0, Math.round((score / maxScore) * 100))               });
             }
             console.log("after Submit ques id is:", next_Ques_Indx);
 
@@ -548,9 +569,6 @@ router.post('/quizQues/:id', (req, res) => {
 
 
 });
-
-
-
 
 
 
