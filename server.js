@@ -3,8 +3,16 @@ const cors=require('cors');
 const app=express();
 const session=require('express-session');
 const nodemailer=require('nodemailer');
+// const multer =  require('multer');
+
+// const upload = multer();
+
+const multer = require('./middleware/uploadMiddleware.js');
+
 
 app.set("view engine", 'ejs');
+
+
 
 app.use(session({
     secret:'some secret',
@@ -16,6 +24,8 @@ app.use(session({
 
 }))
 app.use(express.urlencoded({extended:true}));
+
+app.use('/',multer);
 
 const isAuthenticate=require('./middleware/middleware');
 const authRoute= require('./routes/auth.js');

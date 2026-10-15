@@ -46,5 +46,11 @@
     "email": "aniket@gmail.com",
     "password": "7667",
     "role": "learner"
+  },
+  {
+    "username": "kk",
+    "email": "kk@gmail.com",
+    "password": "888",
+    "role": "learner"
   }
 ]

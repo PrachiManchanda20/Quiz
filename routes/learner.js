@@ -469,6 +469,8 @@ router.post('/quizQues/:id', (req, res) => {
         const oneQues = parseData.find(q => q.id === Number(req.params.id));
         if (!oneQues) return res.status(404).send('Quiz not found');
 
+    const totalQuestions = oneQues.questions.length;
+
     //     console.log(req.body.quesNo,"yye");
     // console.log(oneQues,"nj");
         let index = req.body.quesNo;
@@ -480,7 +482,23 @@ router.post('/quizQues/:id', (req, res) => {
         let score=0;
         let message;
         // console.log("answer is : ", oneQues.questions[Number(index)][oneQues.questions[Number(index)].correctAnswer]);
-        if(req.body.option == Number(index)){
+        // if(req.body.option == oneQues.questions[index].correctAnswer){
+        //         score += 10;
+        //         message = "Correct Answer!";
+        //     }
+        //     else{
+        //         score -= 5;
+        //         message = "Incorrect Answer!";
+        //     }
+        //     console.log('',oneQues.questions[index])
+        //     console.log("ddwd",req.body.option,"this this",req.body.option)
+        if(req.body.action === 'submit'){
+
+            let score=0;
+
+            let message;
+
+            if(req.body.option == oneQues.questions[index].correctAnswer){
                 score += 10;
                 message = "Correct Answer!";
             }
@@ -490,7 +508,6 @@ router.post('/quizQues/:id', (req, res) => {
             }
             console.log('',oneQues.questions[index])
             console.log("ddwd",req.body.option,"this this",req.body.option)
-        if(req.body.action === 'submit'){
 
             return res.render('qes',{
             id: oneQues.id,
@@ -502,6 +519,7 @@ router.post('/quizQues/:id', (req, res) => {
             // correct: oneQues.questions[oneQues.correctAnswer],
             correct: question.options[question.correctAnswer],
             // correctAns: null,
+            totalQuestions: 5,
             showNext: true,
        })
         }

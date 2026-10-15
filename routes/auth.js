@@ -7,6 +7,7 @@ const crypto = require('crypto');
 const { error } = require('console');
 
 
+
 router.get('/login', (req, res, next) => {
     res.render('login');
 })
